@@ -29,7 +29,7 @@ endif
 call plug#begin('~/.vim/plugged')
 " My plugins
 "Plug 'mhinz/vim-startify'
-"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -41,8 +41,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
-"Plug 'cormacrelf/vim-colors-github'
-"Plug 'sonph/onehalf'
+Plug 'cormacrelf/vim-colors-github'
+Plug 'sonph/onehalf'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
@@ -72,7 +72,7 @@ nmap <leader>gs :G<CR>
 " List ends here. Plugins become visible to Vim after this call.
 
 " VimWiki Tweaks
-let g:vimwiki_list = [{'path': '/mnt/dark/',
+let g:vimwiki_list = [{'path': '~/src/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown','.mdown':'markdown'}
 let g:vimwiki_markdown_link_ext = 1
@@ -93,11 +93,11 @@ let g:airline_powerline_fonts = 1
 " colorscheme newspaper
 " colorscheme github
 " colorscheme slate
-
 " colorscheme default
+colorscheme gruvbox
 
 
 " broken
-" let g:airline_theme='ravenpower'
+let g:airline_theme='ravenpower'
 " let g:airline_theme='onehalfdark'
 " colorscheme onehalflight
