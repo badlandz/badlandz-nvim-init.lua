@@ -13,3 +13,16 @@ There are many requirements for setup, and the documentation for setup can be fo
 		* [ ] Do this before task 2  #58fe4423
 
 This links to a [New README](new/README.md)
+
+# BUGS
+
+## NIXOS
+Ok, not working in my nix build because I don't have python installed... the test below seemed to show, I don't have python on that box.
+```
+nvim -u ~/github/badlandz/nolua.vim/init.vim README.md
+pip3 install tasklib pynvim tasklib vimwiki
+which python
+```
+
+## VIM
+This thing still is a neovim init, even if it's not lua, it chokes in regular "vim" instead of nvim. Need to clean this up if I can, make it tighter.
