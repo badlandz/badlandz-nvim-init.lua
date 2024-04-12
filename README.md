@@ -1,8 +1,12 @@
 # NoLua.vim may contain LUA
 
-[Bumper Pool](/)
+ignore me: [Bumper Pool](/)
 
 This is my old init.vim file before trying to convert to lua. I am keeping it here because it's functional for me for vimwiki and time tracking on projects and tasks with vimtask, timewarrior, taskwarrior, and related tools I have been using for a few years.
+
+
+![Screenshot from 2024-04-11 21-28-10](https://github.com/badlandz/nolua.vim/assets/30945171/e888625b-662d-4dd1-a3bd-c6029f480e52)
+
 
 HOWEVER: telescope is broken, leader key is "\"
 
