@@ -18,7 +18,7 @@ set linebreak
 set scrolloff=8
 set colorcolumn=80
 set laststatus=2
-set nofoldenable
+"set nofoldenable
 syntax enable
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -48,6 +48,7 @@ Plug 'sonph/onehalf'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'xiyaowong/transparent.nvim'
 " I need to do this telescope load extension media files to image preview!
 call plug#end()
 " Find files using Telescope command-line shit.
@@ -84,6 +85,12 @@ let g:taskwiki_disable_concealcursor = 'nc'
 
 let g:airline_powerline_fonts = 1
 
+" g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+let g:neovide_transparency = 0.5
+let g:transparency = 0.8
+let g:neovide_background_color = '#0f1117'.printf('%x', float2nr(255 * g:transparency))
+
+set guifont=ComicShannsMono\ Nerd\ Font:h14
 " colorscheme OceanicNext
 " colorscheme default
 " colorscheme gruvbox
