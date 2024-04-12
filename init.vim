@@ -45,7 +45,8 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'sonph/onehalf'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " or                                , { 'branch': '0.1.x' }
 " Plug 'valloric/youcompleteme'
 " I need to do this telescope load extension media files to image preview!
