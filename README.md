@@ -2,6 +2,8 @@
 
 ignore me: [Bumper Pool](/)
 
+Works in vim, and neovim both. Just "this feature not available" error in vim for stuff like telescope. But, it's 100 lines or less, and will work with both editors.
+
 This is my old init.vim file before trying to convert to lua. I am keeping it here because it's functional for me for vimwiki and time tracking on projects and tasks with vimtask, timewarrior, taskwarrior, and related tools I have been using for a few years.
 
 
@@ -28,7 +30,7 @@ This links to a [New README](new/README.md) created using the editor, you will c
 
 
 ## NIXOS
-Ok, not working in my nix build because I don't have python installed... the test below seemed to show, I don't have python on that box.
+Ok, not working in my nix build because I don't have python installed... the test below seemed to show, I don't have python on that box. Just a reminder to me that I need to document some of the prerequisites of this for each OS
 ```
 nvim -u ~/github/badlandz/nolua.vim/init.vim README.md
 pip3 install tasklib pynvim tasklib vimwiki
