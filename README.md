@@ -6,20 +6,21 @@ This is my old init.vim file before trying to convert to lua. I am keeping it he
 
 
 ![Screenshot from 2024-04-11 21-28-10](https://github.com/badlandz/nolua.vim/assets/30945171/e888625b-662d-4dd1-a3bd-c6029f480e52)
-
-
-HOWEVER: telescope is broken, leader key is "\"
-
 There are many requirements for setup, and the documentation for setup can be found by the plugin maintainers. I will provide more information when I have time.
 
+
+
 ## Test Area
+
+This area can be edited and played with in vim, to make sure the plugins are working:
 
 * [ ] This is task 1  #6ef6b5fa
 * [ ] This is task 2  #3625486d
 		* [ ] Do this before task 2  #10f58606
 		### Format Issue displaying in GitHub
 
-This links to a [New README](new/README.md)
+This links to a [New README](new/README.md) created using the editor, you will create one on your system when you use it.
+
 
 # BUGS
 
