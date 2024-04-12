@@ -8,7 +8,9 @@ This is my old init.vim file before trying to convert to lua. I am keeping it he
 ![Screenshot from 2024-04-11 21-28-10](https://github.com/badlandz/nolua.vim/assets/30945171/e888625b-662d-4dd1-a3bd-c6029f480e52)
 There are many requirements for setup, and the documentation for setup can be found by the plugin maintainers. I will provide more information when I have time.
 
+# Roadmap
 
+When I have time I would like to make this a 100 line or less init.vim without lua that creates a nice RUST IDE in vim (not neovim, to stay quick on small older systems).
 
 ## Test Area
 
