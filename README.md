@@ -5,8 +5,7 @@ ignore me: [Bumper Pool](/)
 ## About
 
 Works in vim, and neovim both. Just "this feature not available" error in vim for stuff like telescope. But, it's 100 lines or less, and will work with both editors.
-![Screenshot from 2024-04-11 22-08-43](https://github.com/badlandz/nolua.vim/assets/30945171/9ed05166-d4e7-48a8-ab6a-2a2fd13234f3)
-
+![Screenshot from 2024-04-13 00-07-29](https://github.com/badlandz/nolua.vim/assets/30945171/d1bcde47-2dd9-4853-bc7a-20ac33df5169)
 This is my old init.vim file before trying to convert to lua. I am keeping it here because it's functional for me for vimwiki and time tracking on projects and tasks with vimtask, timewarrior, taskwarrior, and related tools I have been using for a few years.
 
 ## Installation Guide
