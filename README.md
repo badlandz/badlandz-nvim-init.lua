@@ -1,5 +1,5 @@
 # NoLua.vim may contain LUA
-![Screenshot from 2024-04-12 23-07-00](https://github.com/badlandz/nolua.vim/assets/30945171/7223415f-4717-4631-8afa-bb30969cb357)
+![Screenshot from 2024-04-12 23-51-13](https://github.com/badlandz/nolua.vim/assets/30945171/3c72f523-90f6-4238-9da4-026bc24e8dae)
 ignore me: [Bumper Pool](/)
 
 ## About
