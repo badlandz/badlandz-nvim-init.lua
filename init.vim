@@ -83,7 +83,8 @@ let g:airline_powerline_fonts = 1
 let g:neovide_transparency = 0.5
 let g:transparency = 0.8
 let g:neovide_background_color = '#0f1117'.printf('%x', float2nr(255 * g:transparency))
-set guifont=ComicShannsMono\ Nerd\ Font:h14
-colorscheme gruvbox
+set guifont=CaskaydiaCove\ Nerd\ Font:h13
+" colorscheme gruvbox
+colorscheme golden
 let g:airline_theme='ravenpower'
 
