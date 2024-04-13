@@ -1,7 +1,5 @@
 source $HOME/.vim/autoload/plug.vim
-
 let mapleader = " " " map leader to Space
-
 set guicursor=
 syntax on
 set tabstop=4
@@ -70,38 +68,22 @@ nmap <C-h> :TaskWikiToggle<CR>
 nmap <leader>gf :diffgit //2<CR>
 nmap <leader>gj :diffgit //3<CR>
 nmap <leader>gs :G<CR>
-" List ends here. Plugins become visible to Vim after this call.
-
 " VimWiki Tweaks
 let g:vimwiki_list = [{'path': '~/src/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_ext2syntax = {'.md':'markdown', '.markdown':'markdown','.mdown':'markdown'}
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_folding=''
-
 " TaskWarrior Tweaks
 let g:taskwiki_markup_syntex = 'markdown'
 let g:taskwiki_disable_concealcursor = 'nc'
-
+" For Airline Rice
 let g:airline_powerline_fonts = 1
-
 " g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
 let g:neovide_transparency = 0.5
 let g:transparency = 0.8
 let g:neovide_background_color = '#0f1117'.printf('%x', float2nr(255 * g:transparency))
-
 set guifont=ComicShannsMono\ Nerd\ Font:h14
-" colorscheme OceanicNext
-" colorscheme default
-" colorscheme gruvbox
-" colorscheme industry
-" colorscheme tokyonight
-" colorscheme zellner
-" colorscheme newspaper
-" colorscheme github
-" colorscheme slate
-" colorscheme default
 colorscheme gruvbox
-
 let g:airline_theme='ravenpower'
 
