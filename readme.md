@@ -1,3 +1,7 @@
+# Ollama Task Wiki
+
+This is an "outline" and "project" not yet fully functional.
+
 # nolua.vim - Neovim Configuration
 
 This repository contains my personal Neovim configuration, designed for productivity with a focus on Markdown, VimWiki, and AI integration via Ollama.
