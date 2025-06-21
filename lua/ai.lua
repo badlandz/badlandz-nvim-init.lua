@@ -11,10 +11,10 @@ require('gen').prompts['Merge_Texts'] = {
   replace = false,
 }
 
--- User command for merging wiki files
+-- User command for merging wiki files (two files)
 vim.api.nvim_create_user_command('WikiMerge', function(opts)
   if #opts.fargs ~= 2 then
-    print("Error: WikiMerge requires exactly two arguments")
+    vim.notify("Error: WikiMerge requires exactly two arguments", vim.log.levels.ERROR)
     return
   end
   local file1 = opts.fargs[1]

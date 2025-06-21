@@ -39,20 +39,17 @@ vim.cmd [[
   highlight NonText ctermbg=none
 ]]
 
--- Bootstrap lazy.nvim
+-- Lazy.nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -76,24 +73,30 @@ require("lazy").setup({
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope.nvim" },
   { "xiyaowong/transparent.nvim" },
-  { "David-Kunz/gen.nvim" },  -- For AI capabilities
+  { "David-Kunz/gen.nvim" },  -- For AI capabilities with Ollama
 }, {
   install = { colorscheme = { "industry" } },
 })
 
--- Keymappings
+-- Keymappings for Telescope
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+
+-- NERDTree keymapping
 vim.keymap.set("n", "<C-f>", ":NERDTreeToggle<CR>", {})
+
+-- TaskWiki keymapping
 vim.keymap.set("n", "<C-l>", ":TaskWikiToggle<CR>", {})
+
+-- Fugitive keymappings
 vim.keymap.set("n", "<leader>gf", ":diffget //2<CR>", {})
 vim.keymap.set("n", "<leader>gj", ":diffget //3<CR>", {})
 vim.keymap.set("n", "<leader>gs", ":G<CR>", {})
 
--- Merge multiple files with AI
+-- Keymapping for merging files with AI
 vim.keymap.set("n", "<leader>ma", function()
   require("telescope.builtin").find_files({
     cwd = vim.fn.expand("~/doc/"),
@@ -107,10 +110,8 @@ vim.keymap.set("n", "<leader>ma", function()
             table.insert(files, entry[1])
           end
           require('ai').merge_selected_files(files)
-          require("telescope.actions").close(prompt_bufnr)
-        else
-          vim.notify("Please select at least one file to merge.", vim.log.levels.ERROR)
         end
+        require("telescope.actions").close(prompt_bufnr)
       end)
       map("n", "<CR>", function(prompt_bufnr)
         local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
@@ -121,19 +122,21 @@ vim.keymap.set("n", "<leader>ma", function()
             table.insert(files, entry[1])
           end
           require('ai').merge_selected_files(files)
-          require("telescope.actions").close(prompt_bufnr)
-        else
-          vim.notify("Please select at least one file to merge.", vim.log.levels.ERROR)
         end
+        require("telescope.actions").close(prompt_bufnr)
       end)
       return true
     end,
   })
 end, {})
 
--- Plugin-specific configurations
+-- VimWiki configuration
 vim.g.vimwiki_list = {
-  { path = "~/doc/", syntax = "markdown", ext = ".md" },
+  {
+    path = "~/doc/",
+    syntax = "markdown",
+    ext = ".md",
+  },
 }
 vim.g.vimwiki_ext2syntax = {
   [".md"] = "markdown",
@@ -142,8 +145,12 @@ vim.g.vimwiki_ext2syntax = {
 }
 vim.g.vimwiki_markdown_link_ext = 1
 vim.g.vimwiki_folding = ""
+
+-- TaskWiki configuration
 vim.g.taskwiki_markup_syntax = "markdown"
 vim.g.taskwiki_disable_concealcursor = "nc"
+
+-- Airline configuration
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = "base16_gigavolt"
 
