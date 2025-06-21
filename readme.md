@@ -1,5 +1,12 @@
 # Ollama Task Wiki
 
+Requires:
+* TaskWiki
+* TaskWarrior
+* TimeWarrior
+* VimWiki
+
+
 This is an "outline" and "project" not yet fully functional.
 
 # nolua.vim - Neovim Configuration
