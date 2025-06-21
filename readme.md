@@ -55,7 +55,7 @@ Built and tested on **Linux Mint**, nolua.vim requires the following:
      See [https://taskwarrior.org/docs/](https://taskwarrior.org/docs/) for setup.
    - **TimeWarrior**: Install via:
      ```bash
-     sudo apt install timew
+     sudo apt-get install timewarrior taskwarrior python3-tasklib
      ```
      See [https://timewarrior.net/docs/](https://timewarrior.net/docs/) for configuration.
    - **VimWiki**: Installed automatically via `lazy.nvim` (step 4).
