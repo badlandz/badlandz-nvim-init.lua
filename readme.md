@@ -1,140 +1,75 @@
-Give up, you can't do it cleanly without lua, just like I had to learn python because bash script can't do it all... Accept it.
+# nolua.vim Summary
 
+**nolua.vim** is a Neovim configuration built on Linux Mint, optimized for English language editing (Markdown, LaTeX, VimWiki) with AI integration via Ollama and task/time management via TaskWiki. Maintained for years, it needs expert help to fix AI text merging and become a premier English prose editor.
 
-# Ollama Task Wiki
+## Key Features
 
-Requires:
-* TaskWiki
-* TaskWarrior
-* TimeWarrior
-* VimWiki
+- **Plugin Management**: Uses `lazy.nvim` for efficient plugin loading.
+- **Core Editing**: Tailored for writing with relative line numbers, 2-space tabs, Markdown syntax, and no folding.
+- **Task Management**: Integrates TaskWiki with TaskWarrior and TimeWarrior for task tracking and time logging, ideal for managing writing projects.
+- **AI Integration**: Uses `gen.nvim` with Ollama’s `llama3.1` model for text merging via `:WikiMerge`, though currently broken for clean diffs and paragraph summaries.
+- **File Navigation**: `NERDTree` for file exploration, `telescope.nvim` for fuzzy finding files and content.
+- **VimWiki**: Markdown-based wiki in `~/doc/` with extension-aware links.
+- **Git Support**: `vim-fugitive` for Git operations, including merge conflict resolution.
+- **Appearance**: `industry` colorscheme, transparent backgrounds, and Neovide GUI with `CaskaydiaCove Nerd Font`.
 
+## Prerequisites
 
-# BROKEN
+Built and tested on **Linux Mint**, nolua.vim requires the following:
 
-It will search and find similar documents, but it won't open them in a reasonable diff, or suggest merges.
+- **Neovim**: Version compatible with `lazy.nvim` (e.g., 0.9+ recommended).
+- **TaskWiki**: For task and time management within VimWiki.
+- **TaskWarrior**: CLI tool for task management.
+- **TimeWarrior**: CLI tool for time tracking, integrated with TaskWiki.
+- **VimWiki**: For Markdown-based note-taking and wiki management.
+- **Ollama**: AI platform with the `llama3.1` model for text merging.
+- **Git**: For cloning the repository and managing plugins.
 
-THIS might be tough, how do you propose rewrites to whole english paragraphs with merged better summaries from AI?
+## Project Goals
 
-## GOAL
+- **English Language Editor**: Transform Neovim into a top-tier editor for English prose, supporting Markdown and LaTeX workflows.
+- **AI-Driven Merging**: Fix `:WikiMerge` to highlight and merge paragraphs, offering AI-generated summaries at sentence, paragraph, or page levels.
+- **Time Tracking for Writers**: Enhance TaskWiki/TimeWarrior integration to track time spent on writing tasks, boosting productivity.
+- **Community Collaboration**: Invite experts (e.g., ThePrimeagen, TJ DeVries) to refine nolua.vim at [https://github.com/badlandz/nolua.vim](https://github.com/badlandz/nolua.vim).
 
-Highlight paragraphs in merge, and suggest replacement paragraph from merged AI.
-Settings: Sentance, Paragraph, page level "yea, merge that"
+## Current Challenges
 
-This is an "outline" and "project" not yet fully functional.
+- **Broken AI Merging**: `:WikiMerge` finds similar documents but fails to produce clean diffs or suggest coherent paragraph summaries.
+- **Lua Avoidance**: The project minimizes Lua scripting, relying on plugins, but may need Lua expertise for robust AI and merge functionality.
 
-# nolua.vim - Neovim Configuration
+## Getting Started
 
-This repository contains my personal Neovim configuration, designed for productivity with a focus on Markdown, VimWiki, and AI integration via Ollama.
+1. **Install Neovim**:
+   - Follow the official Neovim installation guide for Linux Mint: [https://github.com/neovim/neovim/blob/master/INSTALL.md](https://github.com/neovim/neovim/blob/master/INSTALL.md).
+   - Example for Linux Mint:
+     ```bash
+     sudo apt update
+     sudo apt install neovim
+     ```
 
-## Table of Contents
+2. **Install Prerequisites**:
+   - **TaskWarrior**: Install via:
+     ```bash
+     sudo apt install taskwarrior
+     ```
+     See [https://taskwarrior.org/docs/](https://taskwarrior.org/docs/) for setup.
+   - **TimeWarrior**: Install via:
+     ```bash
+     sudo apt install timew
+     ```
+     See [https://timewarrior.net/docs/](https://timewarrior.net/docs/) for configuration.
+   - **VimWiki**: Installed automatically via `lazy.nvim` (step 4).
+   - **Ollama**: Install Ollama and pull the `llama3.1` model:
+     ```bash
+     curl https://ollama.ai/install.sh | sh
+     ollama pull llama3.1
+     ```
+     See [https://ollama.ai/](https://ollama.ai/) for details.
+   - **Git**: Ensure Git is installed:
+     ```bash
+     sudo apt install git
+     ```
 
-- [Features](#features)
-- [Installation](#installation)
-- [Plugins](#plugins)
-- [Keybindings](#keybindings)
-- [VimWiki and TaskWiki Configuration](#vimwiki-and-taskwiki-configuration)
-- [AI Integration (gen.nvim)](#ai-integration-gennvim)
-- [Colorscheme and Appearance](#colorscheme-and-appearance)
-
-## Features
-
-* **Plugin Management**: Uses `lazy.nvim` for efficient plugin loading and management.
-* **Core Editing**: Basic Neovim settings for improved editing experience (e.g., relative line numbers, tab settings).
-* **File Navigation**: `NERDTree` for file system exploration.
-* **Fuzzy Finding**: `telescope.nvim` for fast file searching, grepping, and buffer switching.
-* **Markdown & Wiki**: Comprehensive support for Markdown, VimWiki, and TaskWiki for note-taking and task management.
-* **AI Integration**: Utilizes `gen.nvim` to interact with Ollama models, including a custom command for merging texts.
-* **Git Integration**: `vim-fugitive` for seamless Git operations within Neovim.
-* **Status Line**: `vim-airline` for an informative and customizable status line.
-* **Syntax Highlighting**: Enhanced syntax highlighting with `nvim-treesitter`.
-* **GUI Enhancements**: Neovide-specific settings for transparency and font.
-
-## Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone [https://github.com/badlandz/nolua.vim](https://github.com/badlandz/nolua.vim) ~/.config/nvim
-    ```
-2.  **Ensure you have Ollama installed and a model pulled**:
-    The AI integration uses `llama3.1` by default. You can pull it using:
-    ```bash
-    ollama pull llama3.1
-    ```
-    (Adjust the model name in `ai.lua` if you prefer a different one.)
-3.  **Open Neovim**:
-    ```bash
-    nvim
-    ```
-    `lazy.nvim` will automatically bootstrap itself and install all specified plugins on the first launch.
-
-## Plugins
-
-This configuration uses `lazy.nvim` to manage the following plugins:
-
-| Plugin Name                  | Description                                                                     | Source        |
-| :--------------------------- | :------------------------------------------------------------------------------ | :------------ |
-| `folke/tokyonight.nvim`      | A dark Neovim colorscheme. [cite_start](Though `industry` is set as default)                |      |
-| `morhetz/gruvbox`            | Another popular Neovim colorscheme.                                             [cite_start]|      |
-| `preservim/nerdtree`         | A file system explorer for Vim/Neovim.                                          [cite_start]|      |
-| `vim-airline/vim-airline`    | A lean & mean status/tabline for Vim that's light and fast.                     [cite_start]|      |
-| `vim-airline/vim-airline-themes` | Themes for vim-airline.                                                         [cite_start]|      |
-| `vimwiki/vimwiki`            | Personal wiki for Vim.                                                          [cite_start]|      |
-| `tbabej/taskwiki`            | Task management extension for Vimwiki.                                          [cite_start]|      |
-| `farseer90718/vim-taskwarrior` | Integration with Taskwarrior CLI.                                               [cite_start]|      |
-| `plasticboy/vim-markdown`    | Markdown syntax highlighting and tools.                                         [cite_start]|      |
-| `powerman/vim-plugin-AnsiEsc`| ANSI escape sequences support for Vim.                                          [cite_start]|      |
-| `majutsushi/tagbar`          | A Vim plugin for Browse the tags of the current file.                         [cite_start]|      |
-| `tpope/vim-fugitive`         | A Git wrapper for Vim.                                                          [cite_start]|      |
-| `cormacrelf/vim-colors-github` | GitHub-like colorscheme for Vim.                                                [cite_start]|      |
-| `sonph/onehalf`              | A color palette for editors and terminals.                                      [cite_start]|      |
-| `nvim-treesitter/nvim-treesitter` | Neovim treesitter configuration for advanced syntax highlighting.           [cite_start]|      |
-| `nvim-lua/plenary.nvim`      | Common Lua functions for Neovim plugins.                                        [cite_start]|      |
-| `nvim-telescope/telescope.nvim` | A highly extensible fuzzy finder.                                               [cite_start]|      |
-| `xiyaowong/transparent.nvim` | Plugin for transparent backgrounds.                                             [cite_start]|      |
-| `David-Kunz/gen.nvim`        | Integration with Large Language Models (LLMs) like Ollama.                      [cite_start]|   |
-
-## Keybindings
-
-[cite_start]The leader key is set to `<Space>`.
-
-| Keybinding          | Description                                    | Plugin/Function         |
-| :------------------ | :--------------------------------------------- | :---------------------- |
-| `<leader>ff`        | Find files (fuzzy search).                     | Telescope               |
-| `<leader>fg`        | Live grep (search content in files).           | Telescope               |
-| `<leader>fb`        | List and switch between open buffers.          | Telescope               |
-| `<leader>fh`        | Search help tags.                              | Telescope               |
-| `<C-f>`             | Toggle NERDTree file explorer.                 | NERDTree                |
-| `<C-l>`             | Toggle TaskWiki.                               | TaskWiki                |
-| `<leader>gf`        | Git diffget //2 (merge conflict resolution).   | Fugitive                |
-| `<leader>gj`        | Git diffget //3 (merge conflict resolution).   | Fugitive                |
-| `<leader>gs`        | Open Git status window.                        | Fugitive                |
-
-## VimWiki and TaskWiki Configuration
-
-* [cite_start]**VimWiki Base Directory**: Your wiki files are located in `~/doc/`.
-* [cite_start]**Syntax**: Uses Markdown syntax with `.md`, `.markdown`, and `.mdown` extensions.
-* [cite_start]**Link Handling**: Markdown links are configured to use extensions.
-* [cite_start]**Folding**: Folding is disabled for VimWiki files.
-* [cite_start]**TaskWiki Markup**: TaskWiki also uses Markdown syntax.
-* [cite_start]**Concealcursor**: `taskwiki_disable_concealcursor` is set to `nc`.
-
-## AI Integration (gen.nvim)
-
-[cite_start]The configuration integrates with `gen.nvim` for AI capabilities, utilizing Ollama.
-
-* [cite_start]**Model**: Configured to use `llama3.1` from Ollama.
-* [cite_start]**Display Mode**: AI responses are displayed in a floating window.
-* [cite_start]**Custom Prompt**: A custom prompt named `Merge_Texts` is defined:
-    `prompt = "Merge the following two texts, removing redundancies and preserving unique information:\n\n$text"` 
-* **`WikiMerge` User Command**:
-    * **Usage**: `:WikiMerge <file1> <file2>` 
-    * **Functionality**: This command takes two file paths as arguments, reads their content, combines them into a new buffer, and then calls the `Gen Merge_Texts` command to have the AI merge the content. This is particularly useful for consolidating information from multiple wiki pages.
-
-## Colorscheme and Appearance
-
-* [cite_start]**Default Colorscheme**: `industry` is set as the primary colorscheme.
-* [cite_start]**Transparent Background**: The `Normal` and `NonText` highlight groups are set to have a transparent background for both GUI and terminal environments.
-* [cite_start]**Neovide Transparency**: For Neovide (GUI), transparency is set to `0.5` with a background color derived from `#0f1117` and a transparency of `0.8`.
-* [cite_start]**GUI Font**: The GUI font is set to `CaskaydiaCove Nerd Font:h13`.
-* [cite_start]**Airline Theme**: The `vim-airline` status line uses the `base16_gigavolt` theme and powerline fonts.
+3. **Clone nolua.vim**:
+   ```bash
+   git clone https://github.com/badlandz/nolua.vim ~/.config/nvim
