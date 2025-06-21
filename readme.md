@@ -28,16 +28,16 @@ This repository contains my personal Neovim configuration, designed for producti
 
 ## Features
 
-* [cite_start]**Plugin Management**: Uses `lazy.nvim` for efficient plugin loading and management.
-* [cite_start]**Core Editing**: Basic Neovim settings for improved editing experience (e.g., relative line numbers, tab settings).
-* [cite_start]**File Navigation**: `NERDTree` for file system exploration.
-* [cite_start]**Fuzzy Finding**: `telescope.nvim` for fast file searching, grepping, and buffer switching.
-* [cite_start]**Markdown & Wiki**: Comprehensive support for Markdown, VimWiki, and TaskWiki for note-taking and task management.
-* [cite_start]**AI Integration**: Utilizes `gen.nvim` to interact with Ollama models, including a custom command for merging texts.
-* [cite_start]**Git Integration**: `vim-fugitive` for seamless Git operations within Neovim.
-* [cite_start]**Status Line**: `vim-airline` for an informative and customizable status line.
-* [cite_start]**Syntax Highlighting**: Enhanced syntax highlighting with `nvim-treesitter`.
-* [cite_start]**GUI Enhancements**: Neovide-specific settings for transparency and font.
+* **Plugin Management**: Uses `lazy.nvim` for efficient plugin loading and management.
+* **Core Editing**: Basic Neovim settings for improved editing experience (e.g., relative line numbers, tab settings).
+* **File Navigation**: `NERDTree` for file system exploration.
+* **Fuzzy Finding**: `telescope.nvim` for fast file searching, grepping, and buffer switching.
+* **Markdown & Wiki**: Comprehensive support for Markdown, VimWiki, and TaskWiki for note-taking and task management.
+* **AI Integration**: Utilizes `gen.nvim` to interact with Ollama models, including a custom command for merging texts.
+* **Git Integration**: `vim-fugitive` for seamless Git operations within Neovim.
+* **Status Line**: `vim-airline` for an informative and customizable status line.
+* **Syntax Highlighting**: Enhanced syntax highlighting with `nvim-treesitter`.
+* **GUI Enhancements**: Neovide-specific settings for transparency and font.
 
 ## Installation
 
