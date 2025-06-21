@@ -1,3 +1,6 @@
+Give up, you can't do it cleanly without lua, just like I had to learn python because bash script can't do it all... Accept it.
+
+
 # Ollama Task Wiki
 
 Requires:
