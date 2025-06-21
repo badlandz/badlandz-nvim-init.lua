@@ -10,6 +10,17 @@ Requires:
 * VimWiki
 
 
+# BROKEN
+
+It will search and find similar documents, but it won't open them in a reasonable diff, or suggest merges.
+
+THIS might be tough, how do you propose rewrites to whole english paragraphs with merged better summaries from AI?
+
+## GOAL
+
+Highlight paragraphs in merge, and suggest replacement paragraph from merged AI.
+Settings: Sentance, Paragraph, page level "yea, merge that"
+
 This is an "outline" and "project" not yet fully functional.
 
 # nolua.vim - Neovim Configuration
