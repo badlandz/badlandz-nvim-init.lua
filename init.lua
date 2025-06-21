@@ -96,6 +96,40 @@ vim.keymap.set("n", "<leader>gf", ":diffget //2<CR>", {})
 vim.keymap.set("n", "<leader>gj", ":diffget //3<CR>", {})
 vim.keymap.set("n", "<leader>gs", ":G<CR>", {})
 
+-- Keymapping for merging files with AI
+vim.keymap.set("n", "<leader>ma", function()
+  require("telescope.builtin").find_files({
+    cwd = vim.fn.expand("~/doc/"),
+    attach_mappings = function(_, map)
+      map("i", "<CR>", function(prompt_bufnr)
+        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+        local selected = picker:get_multi_selection()
+        if #selected > 0 then
+          local files = {}
+          for _, entry in ipairs(selected) do
+            table.insert(files, entry[1])
+          end
+          require('ai').merge_selected_files(files)
+        end
+        require("telescope.actions").close(prompt_bufnr)
+      end)
+      map("n", "<CR>", function(prompt_bufnr)
+        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+        local selected = picker:get_multi_selection()
+        if #selected > 0 then
+          local files = {}
+          for _, entry in ipairs(selected) do
+            table.insert(files, entry[1])
+          end
+          require('ai').merge_selected_files(files)
+        end
+        require("telescope.actions").close(prompt_bufnr)
+      end)
+      return true
+    end,
+  })
+end, {})
+
 -- VimWiki configuration
 vim.g.vimwiki_list = {
   {
