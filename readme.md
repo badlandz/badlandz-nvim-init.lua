@@ -1,6 +1,6 @@
 # nolua.vim Summary
 
-**nolua.vim** is a Neovim configuration built on Linux Mint, optimized for English language editing (Markdown, LaTeX, VimWiki) with AI integration via Ollama and task/time management via TaskWiki. Maintained for years, it needs expert help to fix AI text merging and become a premier English prose editor.
+**nolua.vim** is a LUA Neovim configuration (I wanted to avoid it, but now I have to rename it) built on Linux Mint, optimized for English language editing (Markdown, LaTeX, VimWiki) with AI integration via Ollama and task/time management via TaskWiki. Maintained for years, it needs expert help to fix AI text merging and become a premier English prose editor.
 
 ## Key Features
 
