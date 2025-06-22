@@ -1,14 +1,10 @@
--- Set leader key
 vim.g.mapleader = " "
 
--- Basic Neovim settings
 vim.opt.guicursor = ""
 vim.opt.syntax = "on"
-vim.opt.tabstop = 4
 vim.opt.filetype = "on"
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.spell = false
 vim.opt.ruler = true
 vim.opt.list = true
 vim.opt.wrap = true
@@ -22,16 +18,11 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
--- Neovide settings (optional, for GUI users)
 vim.g.neovide_transparency = 0.5
 vim.g.transparency = 0.8
 vim.g.neovide_background_color = "#0f1117" .. string.format("%x", math.floor(255 * vim.g.transparency))
 vim.opt.guifont = "CaskaydiaCove Nerd Font:h13"
-
--- Colorscheme
 vim.cmd("colorscheme industry")
-
--- Transparent background
 vim.cmd [[
   highlight Normal guibg=none
   highlight NonText guibg=none
@@ -39,26 +30,14 @@ vim.cmd [[
   highlight NonText ctermbg=none
 ]]
 
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", "https://github.com/folke/lazy.nvim.git", lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Plugin specifications
 require("lazy").setup({
-  { "folke/tokyonight.nvim", branch = "main" },
+  { "folke/tokyonight.nvim" },
   { "morhetz/gruvbox" },
   { "preservim/nerdtree" },
   { "vim-airline/vim-airline" },
@@ -76,70 +55,47 @@ require("lazy").setup({
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope.nvim" },
   { "xiyaowong/transparent.nvim" },
-  { "David-Kunz/gen.nvim" },  -- For AI capabilities
+  { "David-Kunz/gen.nvim" },
 }, {
   install = { colorscheme = { "industry" } },
 })
 
--- Keymappings
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+local telescope = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", telescope.find_files, {})
+vim.keymap.set("n", "<leader>fw", telescope.live_grep, {})
+vim.keymap.set("n", "<leader>fb", telescope.buffers, {})
+vim.keymap.set("n", "<leader>fh", telescope.help_tags, {})
+vim.keymap.set("n", "<leader>ft", function()
+  local topic = vim.fn.input("Ask AI about topic: ")
+  if topic and topic ~= "" then
+    vim.cmd("Gen Find_Topic " .. topic)
+  end
+end, {})
 vim.keymap.set("n", "<C-f>", ":NERDTreeToggle<CR>", {})
 vim.keymap.set("n", "<C-l>", ":TaskWikiToggle<CR>", {})
 vim.keymap.set("n", "<leader>gf", ":diffget //2<CR>", {})
 vim.keymap.set("n", "<leader>gj", ":diffget //3<CR>", {})
 vim.keymap.set("n", "<leader>gs", ":G<CR>", {})
-
--- Merge multiple files with AI
 vim.keymap.set("n", "<leader>ma", function()
   require("telescope.builtin").find_files({
     cwd = vim.fn.expand("~/doc/"),
     attach_mappings = function(_, map)
       map("i", "<CR>", function(prompt_bufnr)
-        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-        local selected = picker:get_multi_selection()
+        local selected = require("telescope.actions.state").get_current_picker(prompt_bufnr):get_multi_selection()
         if #selected > 0 then
           local files = {}
-          for _, entry in ipairs(selected) do
-            table.insert(files, entry[1])
-          end
+          for _, entry in ipairs(selected) do table.insert(files, entry[1]) end
           require('ai').merge_selected_files(files)
-          require("telescope.actions").close(prompt_bufnr)
-        else
-          vim.notify("Please select at least one file to merge.", vim.log.levels.ERROR)
         end
-      end)
-      map("n", "<CR>", function(prompt_bufnr)
-        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-        local selected = picker:get_multi_selection()
-        if #selected > 0 then
-          local files = {}
-          for _, entry in ipairs(selected) do
-            table.insert(files, entry[1])
-          end
-          require('ai').merge_selected_files(files)
-          require("telescope.actions").close(prompt_bufnr)
-        else
-          vim.notify("Please select at least one file to merge.", vim.log.levels.ERROR)
-        end
+        require("telescope.actions").close(prompt_bufnr)
       end)
       return true
     end,
   })
 end, {})
 
--- Plugin-specific configurations
-vim.g.vimwiki_list = {
-  { path = "~/doc/", syntax = "markdown", ext = ".md" },
-}
-vim.g.vimwiki_ext2syntax = {
-  [".md"] = "markdown",
-  [".markdown"] = "markdown",
-  [".mdown"] = "markdown",
-}
+vim.g.vimwiki_list = { { path = "~/doc/", syntax = "markdown", ext = ".md" } }
+vim.g.vimwiki_ext2syntax = { [".md"] = "markdown", [".markdown"] = "markdown", [".mdown"] = "markdown" }
 vim.g.vimwiki_markdown_link_ext = 1
 vim.g.vimwiki_folding = ""
 vim.g.taskwiki_markup_syntax = "markdown"
@@ -147,5 +103,5 @@ vim.g.taskwiki_disable_concealcursor = "nc"
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = "base16_gigavolt"
 
--- Load AI configuration
 require('ai')
+
