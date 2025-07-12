@@ -74,7 +74,7 @@ The long-term vision for this Neovim configuration includes:
 
 3.  **Clone this configuration**:
     ```bash
-    git clone [https://github.com/badlandz/nolua.vim](https://github.com/badlandz/nolua.vim) ~/.config/nvim
+    git clone https://github.com/badlandz/nolua.vim
     ```
     (Note: The repository name `nolua.vim` refers to this Neovim configuration.)
 
