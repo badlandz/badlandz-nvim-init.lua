@@ -1,77 +1,83 @@
-# NeoVim for English
+# Neovim Configuration for English Prose
 
 ## Summary
 
-**nolua.vim** is a LUA Neovim configuration (I wanted to avoid it, but now I have to rename it) built on Linux Mint, optimized for English language editing (Markdown, LaTeX, VimWiki) with AI integration via Ollama and task/time management via TaskWiki. Maintained for years, it needs expert help to fix AI text merging and become a premier English prose editor.
+This is a **Neovim configuration** primarily set up for English language editing, focusing on Markdown and VimWiki workflows. It leverages `lazy.nvim` for plugin management and integrates tools for basic task management and Git. While future goals include advanced AI integration via Ollama for text merging and enhanced time tracking, these features are **not yet fully implemented** in the current configuration.
+
+---
 
 ## Key Features
 
-- **Plugin Management**: Uses `lazy.nvim` for efficient plugin loading.
-- **Core Editing**: Tailored for writing with relative line numbers, 2-space tabs, Markdown syntax, and no folding.
-- **Task Management**: Integrates TaskWiki with TaskWarrior and TimeWarrior for task tracking and time logging, ideal for managing writing projects.
-- **AI Integration**: Uses `gen.nvim` with Ollama’s `llama3.1` model for text merging via `:WikiMerge`, though currently broken for clean diffs and paragraph summaries.
-- **File Navigation**: `NERDTree` for file exploration, `telescope.nvim` for fuzzy finding files and content.
-- **VimWiki**: Markdown-based wiki in `~/doc/` with extension-aware links.
-- **Git Support**: `vim-fugitive` for Git operations, including merge conflict resolution.
-- **Appearance**: `industry` colorscheme, transparent backgrounds, and Neovide GUI with `CaskaydiaCove Nerd Font`.
+* **Plugin Management**: Uses `lazy.nvim` for efficient plugin loading and management.
+* **Core Editing**: Configured for writing with settings like relative line numbers, 2-space tabs, Markdown syntax highlighting, and soft wrapping with indentation.
+* **File Navigation**: Integrates `NERDTree` for file system exploration and `telescope.nvim` for fuzzy finding files and content.
+* **VimWiki**: Provides a Markdown-based wiki system, configured to store notes in `~/doc/` with `.md` extensions and proper link handling.
+* **TaskWiki Integration**: Includes basic setup for `taskwiki` to work with Markdown, enabling rudimentary task management within VimWiki. (Note: Full TaskWarrior/TimeWarrior integration and advanced features like time tracking for writers are part of future goals.)
+* **Git Support**: `vim-fugitive` is included for basic Git operations and merge conflict resolution.
+* **Appearance**: Uses the `industry` colorscheme, features transparent backgrounds for a modern look, and is configured for the Neovide GUI with `CaskaydiaCove Nerd Font`.
+* **Markdown Preview**: Includes `markdown-preview.nvim` for live preview of Markdown files.
+* **Writing Enhancements**: Utilizes `vim-pencil` for a better writing experience, including default soft word wrapping.
+
+---
 
 ## Prerequisites
 
-Built and tested on **Linux Mint**, nolua.vim requires the following:
+This configuration is built and tested on **Linux Mint** and requires the following to be installed on your system:
 
-- **Neovim**: Version compatible with `lazy.nvim` (e.g., 0.9+ recommended).
-- **TaskWiki**: For task and time management within VimWiki.
-- **TaskWarrior**: CLI tool for task management.
-- **TimeWarrior**: CLI tool for time tracking, integrated with TaskWiki.
-- **VimWiki**: For Markdown-based note-taking and wiki management.
-- **Ollama**: AI platform with the `llama3.1` model for text merging.
-- **Git**: For cloning the repository and managing plugins.
+* **Neovim**: Version compatible with `lazy.nvim` (e.g., 0.9+ recommended).
+* **Git**: For cloning the repository and managing plugins.
+* **Node.js and npm**: Required by `markdown-preview.nvim` for its functionality.
+* **CaskaydiaCove Nerd Font**: Recommended for optimal appearance with Neovide.
 
-## Project Goals
+*The following tools are mentioned in the project goals but are not fully integrated or required for the current functionality of the provided `init.lua`:*
+* **TaskWarrior**: CLI tool for task management.
+* **TimeWarrior**: CLI tool for time tracking.
+* **Ollama**: AI platform (for future AI integration).
 
-- **English Language Editor**: Transform Neovim into a top-tier editor for English prose, supporting Markdown and LaTeX workflows.
-- **AI-Driven Merging**: Fix `:WikiMerge` to highlight and merge paragraphs, offering AI-generated summaries at sentence, paragraph, or page levels.
-- **Time Tracking for Writers**: Enhance TaskWiki/TimeWarrior integration to track time spent on writing tasks, boosting productivity.
-- **Community Collaboration**: Invite experts (e.g., ThePrimeagen, TJ DeVries) to refine nolua.vim at [https://github.com/badlandz/nolua.vim](https://github.com/badlandz/nolua.vim).
+---
 
-## Current Challenges
+## Project Goals (Future Development)
 
-- **Broken AI Merging**: `:WikiMerge` finds similar documents but fails to produce clean diffs or suggest coherent paragraph summaries.
-- **Lua Avoidance**: The project minimizes Lua scripting, relying on plugins, but may need Lua expertise for robust AI and merge functionality.
+The long-term vision for this Neovim configuration includes:
+
+* **English Language Editor**: Evolving into a top-tier editor for English prose, with robust support for Markdown and LaTeX workflows.
+* **AI-Driven Merging**: Implementing `:WikiMerge` (likely via `gen.nvim` or similar) to highlight and merge paragraphs, offering AI-generated summaries at sentence, paragraph, or page levels using models like Ollama's `llama3.1`.
+* **Advanced Time Tracking for Writers**: Enhancing TaskWiki/TimeWarrior integration to seamlessly track time spent on writing tasks, boosting productivity and providing insights.
+* **Community Collaboration**: Seeking contributions and expertise to refine and expand the capabilities of this configuration.
+
+---
+
+## Current Status and Challenges
+
+* **AI Integration**: The AI-driven merging features outlined in the goals are **not yet implemented** in the current `init.lua`. The configuration does not include `gen.nvim` or any explicit Ollama integration.
+* **TaskWiki Depth**: While `taskwiki` is included, advanced time tracking and deep integration with TaskWarrior/TimeWarrior are future enhancements, not current features.
+
+---
 
 ## Getting Started
 
-1. **Install Neovim**:
-   - Follow the official Neovim installation guide for Linux Mint: [https://github.com/neovim/neovim/blob/master/INSTALL.md](https://github.com/neovim/neovim/blob/master/INSTALL.md).
-   - Example for Linux Mint:
-     ```bash
-     sudo apt update
-     sudo apt install neovim
-     ```
+1.  **Install Neovim**:
+    * Follow the official Neovim installation guide for Linux: [https://github.com/neovim/neovim/blob/master/INSTALL.md](https://github.com/neovim/neovim/blob/master/INSTALL.md).
+    * Example for Linux Mint:
+        ```bash
+        sudo apt update
+        sudo apt install neovim
+        ```
 
-2. **Install Prerequisites**:
-   - **TaskWarrior**: Install via:
-     ```bash
-     sudo apt install taskwarrior
-     ```
-     See [https://taskwarrior.org/docs/](https://taskwarrior.org/docs/) for setup.
-   - **TimeWarrior**: Install via:
-     ```bash
-     sudo apt-get install timewarrior taskwarrior python3-tasklib
-     ```
-     See [https://timewarrior.net/docs/](https://timewarrior.net/docs/) for configuration.
-   - **VimWiki**: Installed automatically via `lazy.nvim` (step 4).
-   - **Ollama**: Install Ollama and pull the `llama3.1` model:
-     ```bash
-     curl https://ollama.ai/install.sh | sh
-     ollama pull llama3.1
-     ```
-     See [https://ollama.ai/](https://ollama.ai/) for details.
-   - **Git**: Ensure Git is installed:
-     ```bash
-     sudo apt install git
-     ```
+2.  **Install Prerequisites**:
+    * **Git**: Ensure Git is installed:
+        ```bash
+        sudo apt install git
+        ```
+    * **Node.js and npm**: Required for Markdown preview. Refer to official Node.js installation guides for your system.
+    * **CaskaydiaCove Nerd Font**: Install this font on your system for the intended visual appearance.
 
-3. **Clone nolua.vim**:
-   ```bash
-   git clone https://github.com/badlandz/nolua.vim ~/.config/nvim
+3.  **Clone this configuration**:
+    ```bash
+    git clone [https://github.com/badlandz/nolua.vim](https://github.com/badlandz/nolua.vim) ~/.config/nvim
+    ```
+    (Note: The repository name `nolua.vim` refers to this Neovim configuration.)
+
+4.  **Launch Neovim**:
+    * Open Neovim by running `nvim` in your terminal. `lazy.nvim` will automatically install the specified plugins on the first launch.
+
