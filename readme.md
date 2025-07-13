@@ -41,7 +41,7 @@ This configuration is built and tested on **Linux Mint** and requires the follow
 The long-term vision for this Neovim configuration includes:
 
 * **English Language Editor**: Evolving into a top-tier editor for English prose, with robust support for Markdown and LaTeX workflows.
-* **AI-Driven Merging**: Implementing `:WikiMerge` (likely via `gen.nvim` or similar) to highlight and merge paragraphs, offering AI-generated summaries at sentence, paragraph, or page levels using models like Ollama's `llama3.1`.
+* **AI-Driven Merging**: Implementing `:WikiMerge` (likely via `gen.nvim` or similar) to highlight and merge paragraphs, offering AI-generated summaries at sentence, paragraph, of similar document, providing cites for source while summarizing, using models like Ollama's `llama3.1`.
 * **Advanced Time Tracking for Writers**: Enhancing TaskWiki/TimeWarrior integration to seamlessly track time spent on writing tasks, boosting productivity and providing insights.
 * **Community Collaboration**: Seeking contributions and expertise to refine and expand the capabilities of this configuration.
 

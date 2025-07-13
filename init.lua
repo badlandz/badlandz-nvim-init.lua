@@ -8,7 +8,7 @@ vim.opt.tabstop = 4
 vim.opt.filetype = "on"
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.spell = false
+vim.opt.spell = true
 vim.opt.ruler = true
 vim.opt.list = true
 vim.opt.wrap = true
@@ -104,9 +104,6 @@ vim.keymap.set("n", "<leader>gf", ":diffget //2<CR>", {})
 vim.keymap.set("n", "<leader>gj", ":diffget //3<CR>", {})
 vim.keymap.set("n", "<leader>gs", ":G<CR>", {})
 
--- Markdown Preview keymapping
-vim.keymap.set("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
-
 -- VimWiki configuration
 vim.g.vimwiki_list = {
   {
@@ -130,6 +127,3 @@ vim.g.taskwiki_disable_concealcursor = "nc"
 -- Airline configuration
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = "raven"
-
--- Pencil configuration
-vim.g['pencil#wrapModeDefault'] = 'soft'  -- Set default wrap mode for vim-pencil
